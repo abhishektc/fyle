@@ -1,0 +1,12 @@
+.example-card {
+    max-width: 500px;
+}
+  
+.example-header-image {
+    background-image: url('https://m.economictimes.com/thumb/msid-71378813,width-1200,height-900,resizemode-4,imgsize-169788/bank-getty.jpg');
+    background-size: cover;
+}
+
+.favourite:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,60 @@
+<div style="display: flex;flex-direction: column; width: 90%;padding: 1% 5%;align-items: center;">
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <div *ngIf="!isLoading" style="display: flex;flex-direction: row;width: 100%;justify-content: space-between;">
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Select city</mat-label>
+        <mat-select [formControl]="cityControl" (selectionChange)="changeCityController()">
+          <mat-option *ngFor="let city of cityList" value={{city}}>{{city}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput (keyup)="applyFilter($event)" #input>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="mat-elevation-z8" style="flex: 8;width: 100%;overflow: auto; white-space: nowrap;">
+    <table mat-table [dataSource]="dataSource" >
+
+      <ng-container matColumnDef="ifsc" >
+        <th mat-header-cell *matHeaderCellDef> IFSC Code </th>
+        <td mat-cell *matCellDef="let element"> {{element.bank_ifsc}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="bankName" >
+        <th mat-header-cell *matHeaderCellDef> Bank Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.bank_name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef> City </th>
+        <td mat-cell *matCellDef="let element"> {{element.bank_city}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="branch">
+        <th mat-header-cell *matHeaderCellDef> Branch </th>
+        <td mat-cell *matCellDef="let element"> {{element.bank_branch}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="favourite">
+        <th mat-header-cell *matHeaderCellDef> Add to Favourite </th>
+        <td mat-cell *matCellDef="let element">       
+          <mat-icon class="favourite" (click)="addFavourite(element.bank_ifsc, element.bank_name, element.bank_city, element.bank_branch)">favorite_border</mat-icon>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element"><a class="btn btn-link" [routerLink]="['/viewBankDetails', element.bank_ifsc]"
+            routerLinkActive="router-link-active">View Details</a></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

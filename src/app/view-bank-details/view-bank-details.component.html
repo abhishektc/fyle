@@ -1,0 +1,46 @@
+<div style="width: 90%;padding: 1% 5%;display: flex;justify-content: center;">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <mat-card *ngIf="!isLoading" class="example-card">
+        <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{bank.bank_name}}</mat-card-title>
+            <mat-card-subtitle>{{bank.bank_branch}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image
+            src="https://m.economictimes.com/thumb/msid-71378813,width-1200,height-900,resizemode-4,imgsize-169788/bank-getty.jpg"
+            alt="Bank">
+        <mat-card-content>
+            <span style="font-weight: bold;">IFSC Code:</span>
+            <p>
+                {{bank.bank_ifsc}}
+            </p>
+        </mat-card-content>
+        <mat-card-content>
+            <span style="font-weight: bold;">Address:</span>
+            <p>
+                {{bank.bank_address}}
+            </p>
+        </mat-card-content>
+        <mat-card-content>
+            <span style="font-weight: bold;">City:</span>
+            <p>
+                {{bank.bank_city}}
+            </p>
+        </mat-card-content>
+        <mat-card-content>
+            <span style="font-weight: bold;">District:</span>
+            <p>
+                {{bank.bank_district}}
+            </p>
+        </mat-card-content>
+        <mat-card-content>
+            <span style="font-weight: bold;">State:</span>
+            <p>
+                {{bank.bank_state}}
+            </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <mat-icon class="favourite" (click)="addFavourite(bank.bank_ifsc, bank.bank_name, bank.bank_city, bank.bank_branch)">favorite_border</mat-icon>
+        </mat-card-actions>
+    </mat-card>
+</div>
