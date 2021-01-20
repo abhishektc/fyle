@@ -33,10 +33,9 @@ export class HomeComponent implements OnInit {
   @ViewChild(MatPaginator, {static: true}) paginators: MatPaginator;
 
   ngOnInit(): void {    
-    this.getBankByCity();
     this.bankService.getBankByAutoComplete('RTGS').subscribe(
       data => {
-        this.result = data.body.banks;
+        this.result = data.body.banks;        
         this.dataSource = new MatTableDataSource(this.result)
         this.dataSource.paginator = this.paginators;
           
